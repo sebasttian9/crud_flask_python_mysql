@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>appcrud</title>
+</head>
+<body>
+    <header>
+        <h1>Listado de Cursos</h1>
+        <nav>
+            <a href="{{ url_for('create') }}" class="btn" >Crear nuevo curso</a>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>CURSO</th>
+                    <th>LENGUAJE</th>
+                    <th>NIVEL</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.id }}</td>
+                    <td>{{ curso.curso }}</td>
+                    <td>{{ curso.lenguaje }}</td>
+                    <td>{{ curso.nivel }}</td>
+                    <td>
+                        <a href="{{ url_for('update',id=curso.id) }}" class="btn btn-edit">Actualizar</a>
+                        <a href="{{ url_for('delete',id=curso.id) }}" class="btn btn-delete" onclick="return confirm('esta seguro de eliminar el registro ? ')">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
